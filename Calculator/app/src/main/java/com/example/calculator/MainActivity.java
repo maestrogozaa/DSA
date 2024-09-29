@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
         if(this.operador.equals("/") && this.n2 == 0) {
             this.textViewScreen.setText("Error: Div 0");
             this.error = true;
-        }
-        else {
+        } else {
             if(this.operador.equals("/")) this.n1 /= this.n2;
             else if(this.operador.equals("x")) this.n1 *= this.n2;
             else if(this.operador.equals("-")) this.n1 -= this.n2;
@@ -62,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
             this.n2 = 0;
             this.operador = "";
-            this.input = String.valueOf(this.n1);
+
+            this.input = String.format("%.3f", this.n1);
             this.inputn2 = "";
 
             this.textViewScreen.setText(this.input);
@@ -74,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
         if(this.error) BorrarPantalla(v);
         if(this.operador.isEmpty()) {
             this.input += button.getText().toString();
-            this.n1 = Integer.parseInt(this.input);
+            this.n1 = Double.parseDouble(this.input);
         }
         else {
             this.input += button.getText().toString();
             this.inputn2 += button.getText().toString();
-            this.n2 = Integer.parseInt(this.inputn2);
+            this.n2 = Double.parseDouble(this.inputn2);
         }
         this.textViewScreen.setText(this.input);
     }
@@ -106,11 +106,13 @@ public class MainActivity extends AppCompatActivity {
 
             this.n2 = 0;
             this.operador = button.getText().toString();
-            this.input = String.valueOf(this.n1) + this.operador;
+
+            this.input = String.format("%.3f", this.n1) + this.operador;
             this.inputn2 = "";
         }
         this.textViewScreen.setText(this.input);
     }
+
 
     public void TrigonometricaPulsada(View v) {
         Button button = (Button) v;
@@ -123,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String function = button.getText().toString();
-
         boolean enRadianes = !this.switchUnits.isChecked();
         if (this.n2 != 0) RealizarOperacion(v);
 
@@ -136,7 +137,8 @@ public class MainActivity extends AppCompatActivity {
 
         this.n2 = 0;
         this.operador = "";
-        this.input = String.valueOf(this.n1);
+
+        this.input = String.format("%.3f", this.n1);
         this.inputn2 = "";
 
         this.textViewScreen.setText(this.input);
